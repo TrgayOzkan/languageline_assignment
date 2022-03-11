@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 public class UserStory_01 extends TestBase {
 
+
    MainPage mainPage = new MainPage();
    VOTCustomer votCustomer = new VOTCustomer();
 

@@ -17,6 +17,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class VOTCustomer {
 
@@ -303,6 +304,49 @@ public class VOTCustomer {
             categoryObj.selectByIndex(3);
     }
 
+    public int getCategorySize(int num1){
 
+        product.click();
+        BrowserUtil.waitForVisibility(By.id("pg:frm:voc_product"),3);
+        Select productObj = new Select(product);
+        productObj.selectByIndex(num1);
+
+        category.click();
+        BrowserUtil.waitForVisibility(category,3);
+        Select categoryObj = new Select(category);
+
+        List<WebElement> list = categoryObj.getOptions();
+
+       return list.size()-1;
+
+    }
+    public int getSubCategorySize(int num1, int num2){
+
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        product.click();
+        BrowserUtil.waitFor(1);
+        BrowserUtil.waitForVisibility(subCategory,3);
+        BrowserUtil.waitElementToBeClickable(product,3);
+        Select productObj = new Select(product);
+        productObj.selectByIndex(num1);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        category.click();
+        BrowserUtil.waitFor(1);
+        BrowserUtil.waitForVisibility(subCategory,3);
+        BrowserUtil.waitElementToBeClickable(category,3);
+        Select categoryObj = new Select(category);
+        categoryObj.selectByIndex(num2);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        subCategory.click();
+        BrowserUtil.waitFor(1);
+        BrowserUtil.waitForVisibility(subCategory,3);
+        BrowserUtil.waitElementToBeClickable(subCategory,3);
+        Select subCategoryObj = new Select(subCategory);
+
+        List<WebElement> list = subCategoryObj.getOptions();
+
+        return list.size()-1;
+
+    }
 
 }
